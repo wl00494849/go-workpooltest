@@ -21,10 +21,12 @@ func main() {
 	wg := sync.WaitGroup{}
 	wg.Add(jobCount)
 
+	//start 3 worker
 	for i := 1; i <= 3; i++ {
 		go worker(i, jobs, wg)
 	}
 
+	//send job to channl
 	for i := 1; i < jobCount; i++ {
 		jobs <- i
 	}
